@@ -93,7 +93,7 @@
 2. Use this command from the folder script to generate entities, fixtures and ts type from a xml file.
 
    ```bash
-   node fileGenerator xml_path_from_root
+   npx ts-node script/fileGenerator.ts xml_path
    ```
    
 ## Commands to create the template :
@@ -133,6 +133,7 @@
 
 - npx tsc --init
 - npm install typescript ts-loader@^9.0.0 --save-dev
+- npm install ts-node@10.9.2
 
 ### Add redux to the template
 
