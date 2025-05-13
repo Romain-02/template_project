@@ -22,63 +22,63 @@
     docker exec -it template-project-devserver bash
     ```
 
-   4. Install the project (the commands until the 8 is in the installation file)
+4. Install the project (the commands until the 8 is in the installation file)
 
+  ```bash
+  bash installation.sh
+  ```
+  
+  - Here is the steps of the installation:
+
+  1.
       ```bash
-      bash installation.sh
+      composer install
+
+      When you see :  The recipe for this package contains some Docker configuration.
+
+      This may create/update compose.yaml or update Dockerfile (if it exists).
+
+      Do you want to include Docker configuration from recipes?
+      [y] Yes
+      [n] No
+      [p] Yes permanently, never ask again for this project
+      [x] No permanently, never ask again for this project
+      (defaults to y): 
+
+      Choose no
+
       ```
-      
-      - Here is the steps of the installation:
 
-      1.
-          ```bash
-          composer install
+  2. Generate the JWT keys
 
-          When you see :  The recipe for this package contains some Docker configuration.
+         ```bash
+        php bin/console lexik:jwt:generate-keypair
+         ```
+        or
+         ```bash
+        mkdir -p config/jwt
+        openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
+        openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
+         ```
+        put the phrase in the .env
 
-          This may create/update compose.yaml or update Dockerfile (if it exists).
+  3. Copy .env
 
-          Do you want to include Docker configuration from recipes?
-          [y] Yes
-          [n] No
-          [p] Yes permanently, never ask again for this project
-          [x] No permanently, never ask again for this project
-          (defaults to y): 
+         ```bash
+         cp .env .env.local
+         ```
 
-          Choose no
+  4. Install yarn
+        ```bash
+        npm install
+        ```
 
-          ```
+  5. Create database
 
-      2. Generate the JWT keys
-
-             ```bash
-            php bin/console lexik:jwt:generate-keypair
-             ```
-            or
-             ```bash
-            mkdir -p config/jwt
-            openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
-            openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
-             ```
-            put the phrase in the .env
-
-      3. Copy .env
-
-             ```bash
-             cp .env .env.local
-             ```
-
-      4. Install yarn
-            ```bash
-            npm install
-            ```
-
-      5. Create database
-
-             ```bash
-             php bin/console make:migration
-             php bin/console doctrine:migrations:migrate
-             ```
+         ```bash
+         php bin/console make:migration
+         php bin/console doctrine:migrations:migrate
+         ```
 
 5. Copy docker files in project
    ```
