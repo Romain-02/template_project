@@ -82,8 +82,8 @@
 
 5. Copy docker files in project
    ```
-    docker cp stock-check-devserver:/var/www/html/vendor .
-    docker cp stock-check-devserver:/var/www/html/node_modules .
+    docker cp template-project-devserver:/var/www/html/vendor .
+    docker cp template-project-devserver:/var/www/html/node_modules .
     ```
 
 ## Task to do to use the template for new projects
