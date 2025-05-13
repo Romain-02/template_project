@@ -3,15 +3,17 @@ import {Avatar, Menu, MenuItem, Tooltip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import {logout} from "@/features/auth/authSlice";
-import {useDispatch} from "react-redux";
 import {useRouter} from "@/routes/hooks";
 import {paths} from "@/routes/paths";
+import {useDispatch} from "react-redux";
+import {useSnackbar} from "notistack";
+import {logout} from "@/features/auth/authSlice";
 
 export const AuthenticatedAvatar = () => {
 
-    const dispatch = useDispatch();
     const router = useRouter();
+    const { enqueueSnackbar } = useSnackbar();
+    const dispatch = useDispatch();
 
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -32,8 +34,12 @@ export const AuthenticatedAvatar = () => {
     }
 
     const handleLogoutClick = () => {
-        console.log("here")
-        dispatch(logout())
+        try {
+            dispatch(logout())
+            window.location.href = '/logout';
+        } catch (error) {
+            enqueueSnackbar("Unable to logout!", { variant: "error" });
+        }
     }
 
     return (
