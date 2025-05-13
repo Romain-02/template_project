@@ -47,13 +47,21 @@ export function entityNameToDefaultName(entityName: string){
     return `DEFAULT_${entityNameSnakeCase.toUpperCase()}`
 }
 
+export function removeUnderscoreAtFirstChar(name: string){
+    return name.startsWith('_') ? name.substring(1, name.length) : name
+}
+
+export function underscoreAtFirstCharNameToType(name: string){
+    return capitalize(removeUnderscoreAtFirstChar(name))
+}
+
 export function isEntityNameEqualAttributeName(entity: Entity, entityAttribute: EntityAttribute){
     return entity.name.toUpperCase() === entityAttribute.name.toUpperCase() ||
         (entityAttribute.name.endsWith('s') && entityAttribute.name.substring(0, entityAttribute.name.length - 1))
 }
 
 export function toSnakeCase(input: string): string {
-    return input.replace(/([A-Z])/g, (match, p1) => "_" + p1.toLowerCase()).replace(/^_/, '');
+    return input.replace(/([A-Z])/g, (_, p1) => "_" + p1.toLowerCase()).replace(/^_/, '');
 }
 
 export function mapType(xmlType: string): { doctrineType: string; phpType: string; } {

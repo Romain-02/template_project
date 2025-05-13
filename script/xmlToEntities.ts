@@ -1,6 +1,13 @@
 import * as fs from 'fs-extra';
 import { XMLParser } from 'fast-xml-parser';
-import { isEntity, mapType, pluralizeIfNeeded, uncapitalize } from "./utils";
+import {
+    isEntity,
+    mapType,
+    pluralizeIfNeeded,
+    removeUnderscoreAtFirstChar,
+    uncapitalize,
+    underscoreAtFirstCharNameToType
+} from "./utils";
 
 export type EntityAttribute = {
     name: string;
@@ -121,7 +128,7 @@ class EntityConverter {
             const { doctrineType, phpType } = mapType(entityName);
 
             return {
-                name: uncapitalize(entityName === "_user" ? "user" : entityName),
+                name: uncapitalize(removeUnderscoreAtFirstChar(entityName)),
                 phpType,
                 doctrineType,
                 isNullable: !column.Property?.includes('NOT NULL') && !isPrimaryKey,
@@ -142,7 +149,7 @@ class EntityConverter {
 
     private convertTableToEntity(table: Table): Entity {
         return {
-            name: table.Name === "_user" ? "User" : table.Name,
+            name: underscoreAtFirstCharNameToType(table.Name),
             attributes: table.Column.map(column =>
                 this.convertColumnToAttribute(column, table)
             )
