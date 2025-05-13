@@ -107,6 +107,8 @@
 - composer require symfony/maker-bundle --dev
 - composer require lexik/jwt-authentication-bundle
 - composer require --dev symfony/profiler-pack
+- composer require --dev orm-fixtures
+- composer require fakerphp/faker
 - npm install
 - composer require encore
 - npm install --save-dev @symfony/webpack-encore
