@@ -7,7 +7,7 @@
 1. Clone the repository
 
     ```bash
-    git clone urlToReplace.git
+    git clone https://github.com/Romain-02/template_project
     ```
 
 2. Build the Docker image
@@ -16,14 +16,7 @@
     ```bash
     docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
     ```
-    - preprod
-    ```bash
-     docker compose --env-file .env.preprod -f docker-compose.yml -f docker-compose.preprod.yml up --remove-orphans -d --build
-    ```
-    - prod
-    ```bash
-    docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-    ```
+
 3. Open terminal in the container
 
     ```bash
