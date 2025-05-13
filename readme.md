@@ -1,4 +1,4 @@
-# Projet Template (Romain Hannoir)
+# Template Project (Romain Hannoir)
 
 ## Getting Started
 
