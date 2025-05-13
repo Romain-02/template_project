@@ -3,7 +3,7 @@ import axios from "axios";
 // redux
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // types
-import { User } from "@/types/api/user/user";
+import { User } from "@/types/api/User/User";
 
 // ----------------------------------------------------------------------
 
@@ -167,7 +167,7 @@ export const authSlice = createSlice({
             })
             .addCase(getMe.rejected, (state, action) => {
                 state.status = "error";
-                state.error = action.error.message || "Failed to fetch user data";
+                state.error = action.error.message || "Failed to fetch User data";
             })
             .addCase(refreshToken.pending, (state) => {
                 state.token = null;

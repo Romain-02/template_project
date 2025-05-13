@@ -39,7 +39,7 @@ Encore
      */
     .cleanupOutputBeforeBuild()
 
-    // Displays build status system notifications to the user
+    // Displays build status system notifications to the User
     // .enableBuildNotifications()
 
     .enableSourceMaps(!Encore.isProduction())

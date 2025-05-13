@@ -1,3 +1,5 @@
+import {Entity, EntityAttribute} from "./xmlToEntities";
+
 export function capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -41,7 +43,17 @@ function removeNumberFromDecimal(str: string): string {
 }
 
 export function entityNameToDefaultName(entityName: string){
-    return `DEFAULT_${entityName.toUpperCase()}`
+    const entityNameSnakeCase = toSnakeCase(entityName);
+    return `DEFAULT_${entityNameSnakeCase.toUpperCase()}`
+}
+
+export function isEntityNameEqualAttributeName(entity: Entity, entityAttribute: EntityAttribute){
+    return entity.name.toUpperCase() === entityAttribute.name.toUpperCase() ||
+        (entityAttribute.name.endsWith('s') && entityAttribute.name.substring(0, entityAttribute.name.length - 1))
+}
+
+export function toSnakeCase(input: string): string {
+    return input.replace(/([A-Z])/g, (match, p1) => "_" + p1.toLowerCase()).replace(/^_/, '');
 }
 
 export function mapType(xmlType: string): { doctrineType: string; phpType: string; } {
@@ -79,6 +91,7 @@ export function mapType(xmlType: string): { doctrineType: string; phpType: strin
             return { doctrineType: 'datetime', phpType: '\\DateTimeInterface'};
         case 'BOOLEAN':
         case 'BOOL':
+        case 'LOGICAL':
             return { doctrineType: 'boolean', phpType: 'bool'};
         case 'BLOB':
         case 'BINARY':
@@ -88,7 +101,7 @@ export function mapType(xmlType: string): { doctrineType: string; phpType: strin
         case 'ARRAY':
             return { doctrineType: 'array', phpType: 'array'};
         default:
-            return { doctrineType: '', phpType: xmlType};
+            return { doctrineType: '', phpType: xmlType === '_user' ? 'User' : xmlType};
     }
 }
 
@@ -101,9 +114,9 @@ export function phpTypeToTypeScript(phpType: string, entityName: string = ""): s
             return 'number';
         case 'string':
             return 'string';
-        case 'bool':
-        case 'DateTimeInterface':
+        case '\\datetimeinterface':
             return 'Date'
+        case 'bool':
         case 'boolean':
             return 'boolean';
         case 'array':

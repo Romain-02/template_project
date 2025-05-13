@@ -121,7 +121,7 @@ class EntityConverter {
             const { doctrineType, phpType } = mapType(entityName);
 
             return {
-                name: uncapitalize(entityName),
+                name: uncapitalize(entityName === "_user" ? "user" : entityName),
                 phpType,
                 doctrineType,
                 isNullable: !column.Property?.includes('NOT NULL') && !isPrimaryKey,
@@ -142,7 +142,7 @@ class EntityConverter {
 
     private convertTableToEntity(table: Table): Entity {
         return {
-            name: table.Name,
+            name: table.Name === "_user" ? "User" : table.Name,
             attributes: table.Column.map(column =>
                 this.convertColumnToAttribute(column, table)
             )

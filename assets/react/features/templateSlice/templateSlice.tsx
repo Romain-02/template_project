@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {ApiData} from "@/types/api/apiData";
+import {ApiData} from "@/types/api/ApiData";
 import {AppObject} from "@/types/app/appObject";
 import {StatusState} from "../../types/status/statusState";
 

@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {enqueueSnackbar} from "notistack";
 import {refreshToken} from "@/features/auth/authSlice";
-import {User} from "@/types/api/user/user";
+import {User} from "@/types/api/User/User";
 
 // =========================================================================
 
