@@ -62,6 +62,6 @@ function writeFileRecursive(pathFile: string, phpCode: string) {
 
 const args = process.argv.slice(2)
 
-const xml_path = "../" + args[0];
+const xml_path = "./" + args[0];
 
 generateFiles(xml_path, SRC_PATH).then()
