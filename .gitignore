@@ -26,5 +26,7 @@ yarn-error.log
 ###< symfony/asset-mapper ###
 
 ### app ##
-
+.env.dev
+.env.local
+.env.testing
 ### app ##
