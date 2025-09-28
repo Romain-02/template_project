@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "baseUrl": "./assets/react",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "incremental": true,
+        "isolatedModules": true,
+        "jsx": "react-jsx",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "noEmit": false,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitAny": false,
+        "paths": {
+            "@/*": ["*"]
+        },
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "ES2017"
+    },
+    "include": [
+        "assets/app.js",
+        "assets/react/**/*"
+    ],
+    "exclude": ["vendor", "src"],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        },
+        "transpileOnly": true
+    }
+}

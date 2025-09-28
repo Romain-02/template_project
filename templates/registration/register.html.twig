@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<section class="bg-gray-50">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+        <a href="/" class="mb-4">
+            <h2 class="font-bold text-3xl">
+                <p class="flex items-center bg-[#222] text-white p-2 px-4 rounded-md">
+                    Template Project
+                    <img class="ms-3 w-8 rounded-full" src="{{ asset('images/templateIcon.png') }}" alt="Logo">
+                </p>
+            </h2>
+        </a>
+
+        <div class="w-full bg-white rounded-lg shadow-xl sm:max-w-md xl:p-0">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-950 md:text-2xl">
+                    Sign up to access to the application
+                </h1>
+
+                {{ form_start(registrationForm) }}
+
+                {% for error in registrationForm.vars.errors %}
+                    <div class="text-sm text-red-750">{{ error.message }}</div>
+                {% endfor %}
+
+                <div class="mb-4">
+                    {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'block mb-1 text-sm font-medium text-gray-950'}}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'mb-1 bg-gray-50 border border-gray-300 text-gray-950 sm:text-sm rounded-lg focus:ring-stone-750 focus:border-stone-750 block w-full p-2.5'}}) }}
+                    {{ form_errors(registrationForm.email, {'attr': {'class': 'mt-1 text-sm text-red-750'}}) }}
+                </div>
+
+                <div class="mb-4">
+                    {{ form_label(registrationForm.username, 'Username', {'label_attr': {'class': 'block mb-1 text-sm font-medium text-gray-950'}}) }}
+                    {{ form_widget(registrationForm.username, {'attr': {'class': 'mb-1 bg-gray-50 border border-gray-300 text-gray-950 sm:text-sm rounded-lg focus:ring-stone-750 focus:border-stone-750 block w-full p-2.5'}}) }}
+                    {{ form_errors(registrationForm.username, {'attr': {'class': 'mt-1 text-sm text-red-750'}}) }}
+                </div>
+
+                <div class="mb-6">
+                    {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'block mb-1 text-sm font-medium text-gray-950'}}) }}
+                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'mb-1 bg-gray-50 border border-gray-300 text-gray-950 sm:text-sm rounded-lg focus:ring-stone-750 focus:border-stone-750 block w-full p-2.5'}}) }}
+                    {{ form_errors(registrationForm.plainPassword, {'attr': {'class': 'mt-1 text-sm text-red-750'}}) }}
+                </div>
+
+                <button type="submit" class="w-full text-white bg-[#222] cursor-pointer hover:bg-[#050505] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Sign up
+                </button>
+
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+        <p class="mt-5 ms-2">Already have an account ? <a href="{{ path('app_login') }}" class="hover:text-blue-900 font-bold text-blue-600 ms-2">Sign in here</a></p>
+    </div>
+</section>
+</body>
+</html>

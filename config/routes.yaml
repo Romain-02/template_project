@@ -1,0 +1,23 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+api_login:
+    path: /api/login
+    methods: [ 'POST' ]
+
+api_doc:
+    path: /docs
+    controller: api_platform.swagger_ui.action
+
+react_route:
+    path: /{route}
+    controller: App\Controller\HomeController::index
+    requirements:
+        route: .+
