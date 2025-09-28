@@ -64,13 +64,11 @@
 
 # Task to do to use the template for new projects
 
-1. Launch the command to change "template-project" everywhere with the name of the app
+1. Use ctrl+r+shift to replace "template-project" everywhere with the name of the app
 
-   ```bash
-   npx ts-node script/newProjectNameInitializer.ts xml_path
-   ```
+2. Do the same with the name of the folders
 
-2. Use this command from the folder script to generate entities, fixtures and ts type from a xml file.
+3. Use this command from the folder script to generate entities, fixtures and ts type from a xml file.
 
    ```bash
    npx ts-node script/fileGenerator.ts xml_path
